@@ -104,7 +104,7 @@ Fine-tuned CCGL model|Weibo|1%|4-3|3.30|[Download](./results/fine_tuning_weight/
 
 Load weights into the model:
 ```python
-# contruct model, carefully check projection head designs:
+# construct model, carefully check projection head designs:
 # use different number of Dense layers
 ...
 # load weights for fine-tuning, distillation, or evaluation
