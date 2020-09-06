@@ -13,29 +13,28 @@ This repo provides a reference implementation of Contrastive Cascade Graph Learn
 > Submitted for review  
 
 
-
-
 ## Dataset
 
 You can download all five datasets (Weibo, Twitter, ACM, APS, and DBLP) via either one of the following links:
-- Google Drive: [Download link](https://drive.google.com/drive/folders/1VH8QNdIdF0Jy79gIPGj4eFoZ530r7V8u?usp=sharing)
-- OneDrive: [Download link](https://1drv.ms/u/s!AsVLooK4NjBruS6rfLyDRufL3SF1?e=oPzFcZ)
-- Tencent Drive: [Download link](https://share.weiyun.com/DG6Tjs5h)
-- Baidu Netdisk: [Download link](https://pan.baidu.com/s/1phTUCPgtVpS9aiu1sH6nqA), download password: `ngjt`
+
+Google Drive|Dropbox|Onedrive|Tencent Drive|Baidu Netdisk
+---|---|---|---|---
+<a href='https://drive.google.com/file/d/1wmUa7hvJlF5oCLVJ72OgyKnVkHZJX8jX/view?usp=sharing' target='_black'><img src='./.assets/200px-Google_Drive_logo.png' height=30px>|<a href='https://www.dropbox.com/s/0kadkjyuwffcuw2/datasets.zip?dl=0' target='_black'><img src='./.assets/200px-Google_Drive_logo.png' height=30px></a>|<a href='https://1drv.ms/u/s!AsVLooK4NjBruTngZWgx1p0psD1k?e=5iMcVB' target='_black'><img src='./.assets/200px-Google_Drive_logo.png' height=30px></a>|<a href='https://share.weiyun.com/QNJNLAyV' target='_black'><img src='./.assets/200px-Google_Drive_logo.png' height=30px></a>|<a href='https://pan.baidu.com/s/1Qape-E7lF06lqxJgGtzABw' target='_black'><img src='./.assets/200px-Google_Drive_logo.png' height=30px></a>
+
 
 ## Environmental Settings
 
-Our experiments are conducted on Ubuntu 20.04, a single NVIDIA 1080Ti GPU, 48GB RAM, and Intel i7 8700K. CGC is implemented by `Python 3.7`, `TensorFlow 2.3`, `Cuda 10.1`, and `Cudnn 7.6.5`.
+Our experiments are conducted on Ubuntu 20.04, a single NVIDIA 1080Ti GPU, 48GB RAM, and Intel i7 8700K. CCGL is implemented by `Python 3.7`, `TensorFlow 2.3`, `Cuda 10.1`, and `Cudnn 7.6.5`.
 
-Step 1: Create a virtual environment and install GPU-support packages via [Anaconda](https://www.anaconda.com/):
+Create a virtual environment and install GPU-support packages via [Anaconda](https://www.anaconda.com/):
 ```shell
+# create virtual environment
 conda create --name=ccgl python=3.7 cudatoolkit=10.1 cudnn=7.6.5
 
+# activate virtual environment
 conda activate ccgl
-```
 
-Step 2: Install all dependencies:
-```python
+# install other dependencies
 pip install -r requirements.txt
 ```
 
@@ -89,9 +88,9 @@ python src/ditilling.py --nmae=weibo-0-0 --num=0 --input=./datasets/weibo/ --pro
 python src/base_model.py --input=./datasets/weibo/ 
 ```
 
-## CGC model weights
+## CCGL model weights
 
-We provide pre-trained, fine-tuned, and distilled CGC model weights. Please see details in the following table. 
+We provide pre-trained, fine-tuned, and distilled CCGL model weights. Please see details in the following table. 
 
 Model|Dataset|Label Fraction|Projection Head|MSLE|Weights
 :---|:---|:---|:---|:---|:---
