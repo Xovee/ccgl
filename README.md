@@ -18,8 +18,8 @@ This repo provides a reference implementation of Contrastive Cascade Graph Learn
 You can download all five datasets (Weibo, Twitter, ACM, APS, and DBLP) via either one of the following links:
 
 Google Drive|Dropbox|Onedrive|Tencent Drive|Baidu Netdisk
----|---|---|---|---
-<a href='https://drive.google.com/file/d/1wmUa7hvJlF5oCLVJ72OgyKnVkHZJX8jX/view?usp=sharing' target='_black'><img src='./.assets/200px-Google_Drive_logo.png' height=30px>|<a href='https://www.dropbox.com/s/0kadkjyuwffcuw2/datasets.zip?dl=0' target='_black'><img src='./.assets/200px-Google_Drive_logo.png' height=30px></a>|<a href='https://1drv.ms/u/s!AsVLooK4NjBruTngZWgx1p0psD1k?e=5iMcVB' target='_black'><img src='./.assets/200px-Google_Drive_logo.png' height=30px></a>|<a href='https://share.weiyun.com/QNJNLAyV' target='_black'><img src='./.assets/200px-Google_Drive_logo.png' height=30px></a>|<a href='https://pan.baidu.com/s/1Qape-E7lF06lqxJgGtzABw' target='_black'><img src='./.assets/200px-Google_Drive_logo.png' height=30px></a>
+:---:|:---:|:---:|:---:|:---:
+<a href='https://drive.google.com/file/d/1wmUa7hvJlF5oCLVJ72OgyKnVkHZJX8jX/view?usp=sharing' target='_black'><img src='./.assets/200px-Google_Drive_logo.png' height=30px>|<a href='https://www.dropbox.com/s/0kadkjyuwffcuw2/datasets.zip?dl=0' target='_black'><img src='./.assets/140px-Microsoft_Office_OneDrive_(2018–present).png' height=30px></a>|<a href='https://1drv.ms/u/s!AsVLooK4NjBruTngZWgx1p0psD1k?e=5iMcVB' target='_black'><img src='.assets/dropbox.png' height=30px></a>|<a href='https://share.weiyun.com/QNJNLAyV' target='_black'><img src='./.assets/tencent-drive-logo.jpg' height=30px></a>|<a href='https://pan.baidu.com/s/1Qape-E7lF06lqxJgGtzABw' target='_black'><img src='./.assets/baidu-netdisk.jpg' height=30px> `bimu`</a>
 
 
 ## Environmental Settings
