@@ -1,4 +1,5 @@
 import random
+import time
 
 import networkx as nx
 import numpy as np
@@ -146,7 +147,7 @@ def augmentor_sim(cascade_file, save_aug_file):
         return parent_degree, all_parent_degree, num_added_leaf_nodes
 
     mean_global_t, num_samples, (loc, scale) = calculate_global_time(cascade_file)
-    print('Mean Global Time:', mean_global_t)
+    # print('Mean Global Time:', mean_global_t)
 
     # open two files, one for read and another for write
     with open(cascade_file, 'r') as f, \
@@ -213,7 +214,7 @@ def augmentor_sim(cascade_file, save_aug_file):
 
 
 def main(argv):
-
+    time_start = time.time()
     print('Start to augment cascade data!')
     if FLAGS.aug_strategy == 'AugSIM':
         print('Augmentation strategy: AugSIM')
@@ -241,6 +242,9 @@ def main(argv):
         print('4/4\nFinished!')
     else:
         print('Specified augmentation strategy doesn\'t exist.')
+
+    time_end = time.time()
+    print('Processing Time: {:.2f}s'.format(time_end - time_start))
 
 
 if __name__ == "__main__":
