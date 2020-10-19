@@ -78,7 +78,7 @@ python src/fine_tuning.py --name=weibo-0 --num=0 --input=./datasets/weibo/ --pro
 ### Distilling
 
 ```shell
-python src/ditilling.py --nmae=weibo-0-0 --num=0 --input=./datasets/weibo/ --projection_head=4-1
+python src/distilling.py --name=weibo-0-0 --num=0 --input=./datasets/weibo/ --projection_head=4-1
 ```
 
 
