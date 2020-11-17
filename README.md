@@ -8,7 +8,7 @@
 
 This repo provides a reference implementation of Contrastive Cascade Graph Learning (**CCGL**) framework as described in the paper:
 
-> Graph Data Augmentation for Contrastive Cascade Learning  
+> CCGL: Contrastive Cascade Graph Learning   
 > [Xovee Xu](https://xovee.cn), [Fan Zhou](https://dblp.org/pid/63/3122-2.html), [Kunpeng Zhang](http://www.terpconnect.umd.edu/~kpzhang/), and [Goce Trajcevski](https://dblp.org/pid/66/974.html)  
 > Submitted for review  
 
@@ -131,7 +131,7 @@ If you find our paper & code are useful for your research, please consider citin
 ```bibtex
 @inproceedings{xu2020ccgl, 
   author = {Xovee Xu and Fan Zhou and Kunpeng Zhang and Goce Trajcevski}, 
-  title = {Graph Data Augmentation for Contrastive Cascade Learning}, 
+  title = {CCGL: Contrastive Cascade Graph Learning}, 
   booktitle = {Submitted for review},
   year = {2020},
   pages = {1--14},
