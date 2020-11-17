@@ -144,9 +144,8 @@ We also have a [survey paper](https://arxiv.org/abs/2005.11041) you might be int
 @article{zhou2020survey,
   author = {Fan Zhou and Xovee Xu and Goce Trajcevski and Kunpeng Zhang}, 
   title = {A Survey of Information Cascade Analysis: Models, Predictions and Recent Advances}, 
-  journal = {arXiv:2005.11041}, 
+  journal = {ACM Computing Surveys (CSUR)}, 
   year = {2020},
-  pages = {1--41},
 }
 ```
 
