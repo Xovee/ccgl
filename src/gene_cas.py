@@ -6,12 +6,15 @@ from absl import app, flags
 
 # flags
 FLAGS = flags.FLAGS
-# observation and prediction time settings:
-# for weibo dataset, we use 3600 (1 hour) and 3600*24 (86400, 1 day)
-# for twitter dataset, we use 3600*24*2 (172800, 2 days) and 3600*24*32 (2764800, 32 days)
-# for acm dataset, we use 3 (years) and 10 (years)
-# for aps dataset, we use 365*3 (1095, 3 years) and 365*20+5 (7305, 20 years)
-# for dblp dataset, we use 5 (years) and 20 (years)
+"""
+Dataset | Observation Time           | Prediction Time               |
+---------------------------------------------------------------------|
+weibo   | 3600 (1 hour)              | 3600*24 (86400, 1 day)        |
+twitter | 3600*24*2 (172800, 2 days) | 2600*24*32 (2764800, 32 days) |
+acm     | 3 (years)                  | 10 (years)                    |
+aps     | 365*3 (1095, 3 years)      | 365*20+5 (7305, 20 years)     |
+dblp    | 5 (years)                  | 20 (years)                    |
+"""
 flags.DEFINE_integer('observation_time', 3600, 'Observation time.')
 flags.DEFINE_integer('prediction_time', 3600*24, 'Prediction time.')
 flags.DEFINE_boolean('unlabel', False, 'Generate unlabeled data.')
