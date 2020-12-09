@@ -16,7 +16,7 @@ This repo provides a reference implementation of Contrastive Cascade Graph Learn
 
 ## Dataset
 
-You can download all five datasets (Weibo, Twitter, ACM, APS, and DBLP) via either one of the following links:
+You can download all five datasets (Weibo, Twitter, ACM, APS, and DBLP) via any one of the following links:
 
 Google Drive|Dropbox|Onedrive|Tencent Drive|Baidu Netdisk
 :---:|:---:|:---:|:---:|:---:
@@ -76,7 +76,7 @@ python src/pre_training.py --name=weibo-0 --input=./datasets/weibo/ --projection
 python src/fine_tuning.py --name=weibo-0 --num=0 --input=./datasets/weibo/ --projection_head=4-1
 ```
 
-### Distilling
+### Distillation
 
 ```shell
 python src/distilling.py --name=weibo-0-0 --num=0 --input=./datasets/weibo/ --projection_head=4-1
@@ -131,7 +131,7 @@ If you find our paper & code are useful for your research, please consider citin
 
 ```bibtex
 @inproceedings{xu2020ccgl, 
-  author = {Xovee Xu and Fan Zhou and Kunpeng Zhang and Siyuan Liu and Goce Trajcevski}, 
+  author = {Xovee Xu and Fan Zhou and Kunpeng Zhang and Siyuan Liu}, 
   title = {CCGL: Contrastive Cascade Graph Learning}, 
   booktitle = {Submitted for review},
   year = {2020},
