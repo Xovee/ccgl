@@ -38,6 +38,10 @@ conda activate ccgl
 pip install -r requirements.txt
 ```
 
+### Run CCGL online in browser
+
+You can also run CCGL model online in [Google Colab](https://colab.research.google.com/drive/1-ZXVIWdEvN8rDSa2i5OrV9Ov5nw63we9?usp=sharing), which is website providing the Python programming environment and GPU-support. 
+
 ## Usage
 
 Here we take Weibo dataset as an example to demonstrate the usage.
@@ -131,10 +135,9 @@ If you find our paper & code are useful for your research, please consider citin
 ```bibtex
 @inproceedings{xu2020ccgl, 
   author = {Xovee Xu and Fan Zhou and Kunpeng Zhang and Siyuan Liu}, 
-  title = {CCGL: Contrastive Cascade Graph Learning}, 
+  title = {{CCGL}: Contrastive Cascade Graph Learning}, 
   booktitle = {Submitted for review},
   year = {2020},
-  pages = {1--14},
 }
 ```
 
