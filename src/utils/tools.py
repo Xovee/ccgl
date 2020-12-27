@@ -30,4 +30,5 @@ def shuffle_two(x, y):
 
 
 def divide_dataset(x, label_fractions=100):
+    # only for 1%, 10%, and 100% label fractions
     return x[::100//label_fractions]
