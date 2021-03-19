@@ -141,14 +141,18 @@ If you find our paper & code are useful for your research, please consider citin
 }
 ```
 
-We also have a [survey paper](https://arxiv.org/abs/2005.11041) you might be interested:
+We also have a [survey paper](https://dl.acm.org/doi/10.1145/3433000) you might be interested:
 
 ```bibtex
-@article{zhou2020survey,
+@article{zhou2021survey,
   author = {Fan Zhou and Xovee Xu and Goce Trajcevski and Kunpeng Zhang}, 
-  title = {A Survey of Information Cascade Analysis: Models, Predictions and Recent Advances}, 
+  title = {A Survey of Information Cascade Analysis: Models, Predictions, and Recent Advances}, 
   journal = {ACM Computing Surveys (CSUR)}, 
-  year = {2020},
+  volume = {54},
+  number = {2},
+  year = {2021},
+  pages = {1--36},
+  doi = {10.1145/3433000},
 }
 ```
 
