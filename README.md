@@ -40,7 +40,7 @@ pip install -r requirements.txt
 
 ### Run CCGL online in browser
 
-You can also run CCGL model online in [Google Colab](https://colab.research.google.com/drive/1-ZXVIWdEvN8rDSa2i5OrV9Ov5nw63we9?usp=sharing), which is website providing the Python programming environment and GPU-support. 
+You can also run CCGL model online in [Google Colab](https://colab.research.google.com/drive/1-ZXVIWdEvN8rDSa2i5OrV9Ov5nw63we9?usp=sharing), an online platform that provides the Python programming environment and GPU-support. 
 
 ## Usage
 
@@ -162,4 +162,4 @@ We would like to thank [Xiuxiu Qi](https://qhemu.github.io/xiuxiuqi/), Ce Li, [Q
 
 ## Contact
 
-For any questions (as well as request for the pdf version) please open an issue or drop an email to: `xovee at live.com`
+For any questions (as well as request for the pdf version) please open an issue or drop an email to: `xovee at ieee.org`
