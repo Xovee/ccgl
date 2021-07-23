@@ -13,7 +13,7 @@ flags.DEFINE_integer('num_s', 2, 'Number of s for spectral graph wavelets.')
 flags.DEFINE_integer('t_o', 3600, 'Observation time.')
 
 # paths
-flags.DEFINE_string( 'input', './datasets/weibo/', 'Pre-training data path.')
+flags.DEFINE_string( 'input', '../datasets/weibo/', 'Pre-training data path.')
 
 
 def main(argv):
@@ -48,22 +48,33 @@ def main(argv):
         return labels
 
     def write_cascade(graphs, labels, filename, weight=True):
+        """
+        Input: cascade graphs, global embeddings
+        Output: cascade embeddings, with global embeddings appended
+        """
         y_data = list()
         new_input = list()
         cascade_i = 0
         cascade_size = len(graphs)
         total_time = 0
 
+        # for each cascade graph, generate its embeddings via wavelets
         for key, graph in graphs.items():
             start_time = time.time()
             y = int(labels[key])
+
+            # list for saving embeddings
             new_temp = list()
-            dg = nx.DiGraph()
+
+            # build graph
+            g = nx.Graph()
             nodes_index = list()
             list_edge = list()
             cascade_embedding = list()
             times = list()
             t_o = observation_time
+
+            # add edges into graph
             for path in graph:
                 t = path[1]
                 if t >= t_o:
@@ -82,20 +93,23 @@ def main(argv):
                     edge = (nodes[-1], nodes[-2])
                 list_edge.append(edge)
             if weight:
-                dg.add_weighted_edges_from(list_edge)
+                g.add_weighted_edges_from(list_edge)
             else:
-                dg.add_edges_from(list_edge)
+                g.add_edges_from(list_edge)
+
+            # this list is used to make sure the node order of `chi` is same to node order of `cascade`
             nodes_index_unique = list(set(nodes_index))
             nodes_index_unique.sort(key=nodes_index.index)
-            g = dg
+
             if g.number_of_nodes() <= 1:
                 continue
 
+            # embedding dim check
             d = emb_dim / (2 * NUM_S)
             if emb_dim % (2 * NUM_S) != 0:
                 raise ValueError
 
-            # embeddings
+            # generate embeddings
             chi, _, _ = graphwave_alg(g, np.linspace(0, 100, int(d)),
                                       taus='auto', verbose=False,
                                       nodes_index=nodes_index_unique,
@@ -107,10 +121,15 @@ def main(argv):
             if weight:
                 cascade_embedding = np.concatenate([np.reshape(times, (-1, 1)), np.array(cascade_embedding)[:, 1:]],
                                                    axis=1)
+
+            # save embeddings
             new_temp.extend(cascade_embedding)
             new_input.append(new_temp)
+
+            # save label
             y_data.append(y)
 
+            # log
             total_time += time.time() - start_time
             cascade_i += 1
             if cascade_i % 100 == 0:
@@ -124,21 +143,30 @@ def main(argv):
             pickle.dump((new_input, y_data), fin)
 
     def write_aug_cascade(graphs, filename, weight=True):
+        """
+        Input: cascade graphs, global embeddings
+        Output: cascade embeddings, with global embeddings appended
+        """
         new_input = list()
         embedding_size = emb_dim
         cascade_i = 0
         cascade_size = len(graphs)
         total_time = 0
 
+        # for each cascade graph, generate its embeddings via wavelets
         for key, graph in graphs.items():
             start_time = time.time()
             new_temp = list()
-            dg = nx.DiGraph()
+
+            # build graph
+            g = nx.Graph()
             nodes_index = list()
             list_edge = list()
             cascade_embedding = list()
             times = list()
             t_o = observation_time
+
+            # add edges into graph
             for path in graph:
                 t = path[1]
                 if t >= t_o:
@@ -147,7 +175,7 @@ def main(argv):
                 if len(nodes) == 1:
                     nodes_index.extend(nodes)
                     times.append(1)
-                    dg.add_node(nodes[-1])
+                    g.add_node(nodes[-1])
                     continue
                 else:
                     nodes_index.extend([nodes[-1]])
@@ -158,20 +186,23 @@ def main(argv):
                     edge = (nodes[-1], nodes[-2])
                 list_edge.append(edge)
             if weight:
-                dg.add_weighted_edges_from(list_edge)
+                g.add_weighted_edges_from(list_edge)
             else:
-                dg.add_edges_from(list_edge)
+                g.add_edges_from(list_edge)
+
+            # this list is used to make sure the node order of `chi` is same to node order of `cascade`
             nodes_index_unique = list(set(nodes_index))
             nodes_index_unique.sort(key=nodes_index.index)
-            g = dg
+
             if g.number_of_nodes() <= 1:
                 continue
 
+            # embedding dim check
             d = embedding_size / (2 * NUM_S)
             if embedding_size % (2 * NUM_S) != 0:
                 raise ValueError
 
-            # node embeddings
+            # generate embeddings
             chi, _, _ = graphwave_alg(g, np.linspace(0, 100, int(d)),
                                       taus='auto', verbose=False,
                                       nodes_index=nodes_index_unique,
@@ -183,9 +214,12 @@ def main(argv):
             if weight:
                 cascade_embedding = np.concatenate([np.reshape(times, (-1, 1)), np.array(cascade_embedding)[:, 1:]],
                                                    axis=1)
+
+            # save embeddings
             new_temp.extend(cascade_embedding)
             new_input.append(new_temp)
 
+            # log
             total_time += time.time() - start_time
             cascade_i += 1
             if cascade_i % 100 == 0:

@@ -128,6 +128,10 @@ Early stopping patience|20|Projection Head (1%)|4-3
 Embedding dimension|64|Model size|128 (4x)
 Learning rate|5e-4|Temperature|0.1
 
+## Change Logs
+
+- Jul 21, 2021: fix a bug and some annotations
+
 ## Cite
 
 If you find our paper & code are useful for your research, please consider citing us 😘:
