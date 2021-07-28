@@ -11,6 +11,7 @@ This repo provides a reference implementation of Contrastive Cascade Graph Learn
 > CCGL: Contrastive Cascade Graph Learning   
 > [Xovee Xu](https://xovee.cn), [Fan Zhou](https://dblp.org/pid/63/3122-2.html), [Kunpeng Zhang](http://www.terpconnect.umd.edu/~kpzhang/), and [Siyuan Liu](https://directory.smeal.psu.edu/sxl68)  
 > Submitted for review  
+> [arXiv:2107.12576](https://arxiv.org/abs/2107.12576)
 
 
 ## Dataset
@@ -137,11 +138,11 @@ Learning rate|5e-4|Temperature|0.1
 If you find our paper & code are useful for your research, please consider citing us 😘:
 
 ```bibtex
-@inproceedings{xu2020ccgl, 
+@article{xu2021ccgl, 
   author = {Xovee Xu and Fan Zhou and Kunpeng Zhang and Siyuan Liu}, 
   title = {{CCGL}: Contrastive Cascade Graph Learning}, 
-  booktitle = {Submitted for review},
-  year = {2020},
+  booktitle = {arXiv:2107.12576},
+  year = {2021},
 }
 ```
 
