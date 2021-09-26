@@ -141,8 +141,8 @@ If you find our paper & code are useful for your research, please consider citin
 @article{xu2021ccgl, 
   author = {Xovee Xu and Fan Zhou and Kunpeng Zhang and Siyuan Liu}, 
   title = {{CCGL}: Contrastive Cascade Graph Learning}, 
-  booktitle = {arXiv:2107.12576},
-  year = {2021},
+  journal = {arXiv:2107.12576},
+  year = {2021}, 
 }
 ```
 
