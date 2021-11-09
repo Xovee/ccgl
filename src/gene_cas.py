@@ -10,7 +10,7 @@ FLAGS = flags.FLAGS
 Dataset | Observation Time           | Prediction Time               |
 ---------------------------------------------------------------------|
 weibo   | 3600 (1 hour)              | 3600*24 (86400, 1 day)        |
-twitter | 3600*24*2 (172800, 2 days) | 2600*24*32 (2764800, 32 days) |
+twitter | 3600*24*2 (172800, 2 days) | 3600*24*32 (2764800, 32 days) |
 acm     | 3 (years)                  | 10 (years)                    |
 aps     | 365*3 (1095, 3 years)      | 365*20+5 (7305, 20 years)     |
 dblp    | 5 (years)                  | 20 (years)                    |
