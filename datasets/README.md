@@ -1,6 +1,6 @@
 # Datasets
 
-The input of CGC model is a `.txt` file, each line of the file represents a cascade:
+The input of CCGL model is a `.txt` file, each line of the file represents a cascade:
 
 ```
 cascade_id \t adoption_id \t adoption_time \t num_adoptions \t [a list of adoptions seperated by "space"] \n
