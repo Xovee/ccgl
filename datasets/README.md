@@ -11,6 +11,6 @@ An example of Weibo cascade:
 ```
 For each of the adoptions, e.g., `1/2:22032`, it means user `2` retweet user `1`'s retweet at time `22032`. 
 
-## Caveat: about the seed
+## Caveat: About the seed
 
-Due to some historical code issues, please use 'xovee' (string) as seed for Weibo, ACM, and DBLP datasets, and use 0 (integer) as seed for Twitter and APS datasets.
+Due to some historical code issues, to get a corect dataset split results, please use 'xovee' (string) as seed for Weibo, ACM, and DBLP datasets, and use 0 (integer) as seed for Twitter and APS datasets.
