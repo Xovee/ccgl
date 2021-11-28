@@ -25,8 +25,8 @@ flags.DEFINE_integer('label_fraction', 100, 'Label fraction, only for 1%, 10%, a
 flags.DEFINE_float(  'lr', 5e-4, 'Learning rate.')
 flags.DEFINE_integer('model_size', 4, 'Model size.')
 flags.DEFINE_integer('model_size_scale', 32, 'Model size base scale.')
-flags.DEFINE_string( 'name', 'n999', 'Name of this experiment.')
-flags.DEFINE_string( 'num', '0', 'A number in saved path of teacher weights.')
+flags.DEFINE_string( 'name', 'n999', 'Name of the pre-training model.')
+flags.DEFINE_string( 'num', '0', 'Suffix of the saved teacher model.')
 flags.DEFINE_integer('patience', 20, 'Patience for early stopping.')
 flags.DEFINE_string( 'projection_head', '2-0', 'MLP-based projection head.')
 

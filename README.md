@@ -163,4 +163,4 @@ We would like to thank [Xiuxiu Qi](https://qhemu.github.io/xiuxiuqi/), [Ce Li](h
 
 ## Contact
 
-For any questions (as well as request for the pdf version) please open an issue or drop an email to: `xovee at ieee.org`
+For any questions please open an issue or drop an email to: `xovee at ieee.org`
