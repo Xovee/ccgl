@@ -25,6 +25,37 @@ def save_file(id, paths, file):
     file.write(str(id) + '\t' + '\t'.join(paths) + '\n')
 
 
+def augmentor_attr(input_file, output_file, ):
+    """
+    Alter the time: randomly select a time (as the new time) between the previous new time and the next time.
+    """
+    i = 0
+    with open(input_file, 'r') as f, \
+            open(output_file, 'w') as save_f:
+        for line in f:
+            paths = line.strip().split('\t')[:-1][:FLAGS.max_seq + 1]
+            num_ori_nodes = len(paths) - 1
+            eta = FLAGS.aug_strength * num_ori_nodes
+            cascade_id = int(paths[0])
+            observation_path = [paths[1]]  # ordered by time
+            observation_times = [0]
+
+            for num, path in enumerate(paths[2:-1], start=1):
+                next_t = int(paths[num+2].split(':')[1])
+                current_t = int(path.split(':')[1])
+                previous_t = observation_times[-1]
+                new_t = random.randint(previous_t, next_t)
+                observation_times.append(new_t)
+                nodes = path.split(':')[0].split(',')
+                observation_path.append(','.join(nodes) + ':' + str(new_t))
+
+            observation_path.append(paths[-1])
+
+            # write cascades into file
+            save_file(cascade_id, observation_path, save_f)
+            i += 1
+
+
 def augmentor_rwr(input_file, output_file, restart_prob=.2, gamma=2):
     # a reference implementation of AugRWR
 
@@ -239,6 +270,16 @@ def main(argv):
         print('3/4')
         augmentor_rwr(FLAGS.input + 'unlabel.txt', FLAGS.input + 'unlabel_aug_2.txt',
                       FLAGS.restart_prob, FLAGS.gamma)
+        print('4/4\nFinished!')
+    elif FLAGS.aug_strategy == 'AugAttr':
+        print('Augmentation strategy: AugAttr')
+        augmentor_attr(FLAGS.input + 'train.txt', FLAGS.input + 'aug_1.txt')
+        print('1/4')
+        augmentor_attr(FLAGS.input + 'train.txt', FLAGS.input + 'aug_2.txt')
+        print('2/4')
+        augmentor_attr(FLAGS.input + 'unlabel.txt', FLAGS.input + 'unlabel_aug_1.txt')
+        print('3/4')
+        augmentor_attr(FLAGS.input + 'unlabel.txt', FLAGS.input + 'unlabel_aug_2.txt')
         print('4/4\nFinished!')
     else:
         print('Specified augmentation strategy doesn\'t exist.')

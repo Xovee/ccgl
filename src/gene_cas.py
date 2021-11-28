@@ -25,6 +25,14 @@ flags.DEFINE_string ('input', './datasets/weibo/', 'Dataset path.')
 
 def generate_cascades(observation_time, prediction_time, unlabel,
                       filename, file_train, file_val, file_test, file_unlabel, seed='xovee'):
+    # set seed
+    if 'weibo' in FLAGS.input or 'acm' in FLAGS.input or 'dblp' in FLAGS.input:
+        seed = 'xovee'
+    elif 'twitter' in FLAGS.input or 'aps' in FLAGS.input:
+        seed = 0
+    else:
+        print('A new dataset!')
+    print(f'Current seed: {seed}')
 
     # a list to save the cascades
     filtered_data = list()

@@ -1,6 +1,5 @@
 # CCGL: Contrastive Cascade Graph Learning
 
-[![Open In Colab](./.assets/colab-badge.svg)](https://colab.research.google.com/drive/1-ZXVIWdEvN8rDSa2i5OrV9Ov5nw63we9?usp=sharing)
 ![](https://img.shields.io/badge/python-3.7-green)
 ![](https://img.shields.io/badge/tensorflow-2.3-green)
 ![](https://img.shields.io/badge/cudatoolkit-10.1-green)
@@ -38,10 +37,6 @@ conda activate ccgl
 # install other dependencies
 pip install -r requirements.txt
 ```
-
-### Run CCGL online in browser
-
-You can also run CCGL model online in [Google Colab](https://colab.research.google.com/drive/1-ZXVIWdEvN8rDSa2i5OrV9Ov5nw63we9?usp=sharing), an online platform that provides the Python programming environment and GPU-support. 
 
 ## Usage
 
