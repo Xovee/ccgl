@@ -68,19 +68,21 @@ python src/gene_emb.py --input=./datasets/weibo/
 ```shell
 python src/pre_training.py --name=weibo-0 --input=./datasets/weibo/ --projection_head=4-1
 ```
+The saved pre-training model is named as `weibo-0`. 
 
 ### Fine-tuning
 
 ```shell
 python src/fine_tuning.py --name=weibo-0 --num=0 --input=./datasets/weibo/ --projection_head=4-1
 ```
+Here we load the pre-trained model `weibo-0` and save the teacher network as `weibo-0-0`.
 
 ### Distillation
 
 ```shell
 python src/distilling.py --name=weibo-0-0 --num=0 --input=./datasets/weibo/ --projection_head=4-1
 ```
-
+Here we load the teacher network `weibo-0-0` and save the student network as `weibo-0-0-student-0`. 
 
 ### (Optional) Run the Base model
 
