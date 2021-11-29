@@ -47,7 +47,7 @@ def main(argv):
                 labels[id] = line.strip().split('\t')[-1]
         return labels
 
-    def write_cascade(graphs, labels, filename, weight=True):
+    def write_cascade(graphs, labels, filename, print_note='Write cascade graphs', weight=True):
         """
         Input: cascade graphs, global embeddings
         Output: cascade embeddings, with global embeddings appended
@@ -135,14 +135,14 @@ def main(argv):
             if cascade_i % 100 == 0:
                 speed = total_time / cascade_i
                 eta = (cascade_size - cascade_i) * speed
-                print("{}/{}, eta: {:.2f} minutes".format(
-                    cascade_i, cascade_size, eta / 60))
+                print("{}, {}/{}, eta: {:.2f} minutes".format(
+                    print_note, cascade_i, cascade_size, eta / 60))
 
         # save embeddings and labels into file
         with open(filename, 'wb') as fin:
             pickle.dump((new_input, y_data), fin)
 
-    def write_aug_cascade(graphs, filename, weight=True):
+    def write_aug_cascade(graphs, filename, print_note='augmentation 1', weight=True):
         """
         Input: cascade graphs, global embeddings
         Output: cascade embeddings, with global embeddings appended
@@ -225,8 +225,8 @@ def main(argv):
             if cascade_i % 100 == 0:
                 speed = total_time / cascade_i
                 eta = (cascade_size - cascade_i) * speed
-                print("{}/{}, eta: {:.2f} minutes".format(
-                    cascade_i, cascade_size, eta / 60))
+                print("{}, {}/{}, eta: {:.2f} minutes".format(
+                    print_note, cascade_i, cascade_size, eta / 60))
 
         # save embeddings into file
         with open(filename, 'wb') as fin:
@@ -249,19 +249,21 @@ def main(argv):
     label_test = read_labels(FLAGS.input + 'test.txt')
 
     print("Start writing train set into file.")
-    write_cascade(graphs_train, label_train, FLAGS.input + 'train.pkl')
+    write_cascade(graphs_train, label_train, FLAGS.input + 'train.pkl', print_note='(1/7) Write train set')
     print("Start writing validation set into file.")
-    write_cascade(graphs_val, label_val, FLAGS.input + 'val.pkl')
+    write_cascade(graphs_val, label_val, FLAGS.input + 'val.pkl', print_note='(2/7) Write val set')
     print("Start writing test set into file.")
-    write_cascade(graphs_test, label_test, FLAGS.input + 'test.pkl')
+    write_cascade(graphs_test, label_test, FLAGS.input + 'test.pkl', print_note='(3/7) Write test set')
     print("Start writing aug set 1 into file.")
-    write_aug_cascade(graphs_aug_1, FLAGS.input + 'data_aug_1.pkl')
+    write_aug_cascade(graphs_aug_1, FLAGS.input + 'data_aug_1.pkl', print_note='(4/7) Write augmented cascade graphs')
     print("Start writing aug set 2 into file.")
-    write_aug_cascade(graphs_aug_2, FLAGS.input + 'data_aug_2.pkl')
+    write_aug_cascade(graphs_aug_2, FLAGS.input + 'data_aug_2.pkl', print_note='(5/7) Write augmented cascade graphs')
     print("Start writing unlabel aug set 1 into file.")
-    write_aug_cascade(graphs_unlabel_aug_1, FLAGS.input + 'data_unlabel_aug_1.pkl')
+    write_aug_cascade(graphs_unlabel_aug_1, FLAGS.input + 'data_unlabel_aug_1.pkl',
+                      print_note='(6/7) Write unlabeled augmented cascade graphs')
     print("Start writing unlabel aug set 2 into file.")
-    write_aug_cascade(graphs_unlabel_aug_2, FLAGS.input + 'data_unlabel_aug_2.pkl')
+    write_aug_cascade(graphs_unlabel_aug_2, FLAGS.input + 'data_unlabel_aug_2.pkl',
+                      print_note='(7/7) Write unlabeled augmented cascade graphs')
 
     time_end = time.time()
     print("Processing time: {0:.2f}s".format(time_end - time_start))
