@@ -14,3 +14,7 @@ For each of the adoptions, e.g., `1/2:22032`, it means user `2` retweet user `1`
 ## Caveat: About the seed
 
 Due to some historical code issues, to get a corect dataset split results, please use 'xovee' (string) as seed for Weibo, ACM, and DBLP datasets, and use 0 (integer) as seed for Twitter and APS datasets.
+
+## Caveat: About Weibo dataset
+
+As described in DeepHawkes paper, the cascades in Weibo dataset are between 8 AM and 6 PM (however the time in its code is different). If you want to compare CCGL with DeepHawkes, CasCN, and many others, make sure the time is set consistently. Golden rule: make sure the datasets (train, val, test) for training and testing are all identical for all baselines. 
