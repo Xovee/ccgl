@@ -59,7 +59,7 @@ def generate_cascades(observation_time, prediction_time, unlabel,
             if not unlabel:
                 if 'weibo' in FLAGS.input:
                     # timezone invariant
-                    hour = int(time.strftime('%H', time.gmtime(float(parts[2])))) + 8
+                    hour = int(time.strftime('%H', time.gmtime(float(parts[2])))) + 8  # UTC+8
                     if hour < 8 or hour >= 18:
                         continue
                 elif 'twitter' in FLAGS.input:
