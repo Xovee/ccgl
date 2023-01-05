@@ -145,7 +145,7 @@ If you find our paper & code are useful for your research, please consider citin
 }
 ```
 
-We also have a [survey paper](https://xovee.cn/html/paper-redirects/csur2021.html) you might be interested:
+We also have a [survey paper](https://dl.acm.org/doi/10.1145/3433000?cid=99659687041) you might be interested:
 
 ```bibtex
 @article{zhou2021survey,
