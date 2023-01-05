@@ -9,7 +9,7 @@
 This repo provides a reference implementation of Contrastive Cascade Graph Learning (**CCGL**) framework as described in the paper:
 
 > CCGL: Contrastive Cascade Graph Learning   
-> [Xovee Xu](https://xovee.cn), [Fan Zhou](https://dblp.org/pid/63/3122-2.html), [Kunpeng Zhang](http://www.terpconnect.umd.edu/~kpzhang/), and [Siyuan Liu](https://directory.smeal.psu.edu/sxl68)  
+> [Xovee Xu](https://www.xoveexu.com), [Fan Zhou](https://dblp.org/pid/63/3122-2.html), [Kunpeng Zhang](http://www.terpconnect.umd.edu/~kpzhang/), and [Siyuan Liu](https://directory.smeal.psu.edu/sxl68)  
 > IEEE Transactions on Knowledge and Data Engineering (TKDE), 2022  
 > [arXiv:2107.12576](https://arxiv.org/abs/2107.12576)
 
@@ -167,4 +167,4 @@ We would like to thank [Xiuxiu Qi](https://qhemu.github.io/xiuxiuqi/), [Ce Li](h
 
 ## Contact
 
-For any questions please open an issue or drop an email to: `xovee at ieee.org`
+For any questions please open an issue or drop an email to: `xovee at live.com`
