@@ -5,6 +5,7 @@ The rewrite retains CCGL's AugSIM → GraphWave → contrastive BiGRU → fine-t
 
 | Area | Original code | PyTorch code |
 | --- | --- | --- |
+| Storage | Path/time TXT files | Lossless Parquet input shared with CasFlow; model-specific `.pt` training caches. |
 | Records | Parsing unlabeled/augmented files as labeled text dropped the final event. | Retain all events before the 100-event limit. |
 | Views | Pre-training read the same extra unlabeled view twice. | Use independent, ID-aligned views. |
 | AugSIM | Some degree calculations omitted the final edge; deletion modified the list being traversed. | Truncate first, compute the complete expanded graph and apply leaf removals together. Proportional strength 0.1 and arrival intervals are retained. |

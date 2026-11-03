@@ -1,7 +1,8 @@
 __pycache__/
 *.py[cod]
 .venv/
-/datasets/
+/datasets/*
+!/datasets/README.md
 /prepared/
 /results/
 *.log

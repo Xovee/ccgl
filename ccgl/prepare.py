@@ -1,4 +1,4 @@
-"""Prepare two AugSIM views and GraphWave features from the public raw data."""
+"""Prepare two AugSIM views and GraphWave features from Parquet cascades."""
 
 import argparse
 from collections import Counter
@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 
 import numpy as np
+import pyarrow.parquet as pq
 import torch
 
 from .data import Cascade, DATASETS, read_cascades
@@ -61,18 +62,23 @@ def augment(cascades, observation, rng, strength=0.1, theta=0.1):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dataset", choices=DATASETS, required=True)
-    parser.add_argument("--raw", type=Path, required=True)
+    parser.add_argument("--raw", type=Path, required=True, help="A cascade Parquet file.")
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--device", default="cuda")
     parser.add_argument("--seed", type=int, default=0)
     args = parser.parse_args()
+    source = json.loads(pq.ParquetFile(args.raw).schema_arrow.metadata[b"cascade_metadata"])
+    if source["dataset"] != args.dataset:
+        parser.error("--dataset must match the dataset recorded in the Parquet file.")
     torch.set_num_threads(4)
     splits = read_cascades(args.raw, args.dataset)
     labeled_ids = {c.id for name in ("train", "val", "test") for c in splits[name]}
     overlap = sum(c.id in labeled_ids for c in splits["unlabeled"])
     splits["unlabeled"] = [c for c in splits["unlabeled"] if c.id not in labeled_ids]
+    with args.raw.open("rb") as raw:
+        digest = hashlib.file_digest(raw, "sha256").hexdigest()
     manifest = {
-        "dataset": args.dataset, "raw_sha256": hashlib.file_digest(args.raw.open("rb"), "sha256").hexdigest(),
+        "dataset": args.dataset, "raw_sha256": digest, "source": source,
         "split_seed": DATASETS[args.dataset][3], "augmentation_seed": args.seed,
         "counts": {name: len(cascades) for name, cascades in splits.items()},
         "overlap_candidates": overlap, "include_overlap": False,

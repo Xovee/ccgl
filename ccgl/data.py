@@ -1,11 +1,11 @@
-"""Raw cascade parsing and the original deterministic labeled-data splits."""
+"""Parquet cascades and the original deterministic labeled-data splits."""
 
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from math import ceil
-from pathlib import Path
 import random
 
+import pyarrow.parquet as pq
 import torch
 
 
@@ -29,17 +29,19 @@ class Cascade:
 def read_cascades(path, dataset):
     observation, prediction, minimum, seed = DATASETS[dataset]
     labeled, unlabeled = [], []
-    with Path(path).open(encoding="utf-8") as source:
-        for line in source:
-            identifier, _, published, _, adoptions = line.rstrip().split("\t")
+    batches = pq.ParquetFile(path).iter_batches(
+        batch_size=1024, columns=["cascade_id", "published", "events"], use_threads=False
+    )
+    for batch in batches:
+        for record in batch.to_pylist():
+            identifier, published = record["cascade_id"], record["published"]
             events = []
             future_size = 0
-            for adoption in adoptions.split():
-                nodes, time = adoption.rsplit(":", 1)
-                time = int(time)
+            for event in record["events"]:
+                time = event["elapsed"]
                 future_size += time < prediction
                 if time < observation:
-                    events.append((tuple(map(int, nodes.split("/"))), time))
+                    events.append((tuple(event["path"]), time))
             if len(events) < minimum:
                 continue
             events.sort(key=lambda event: event[1])

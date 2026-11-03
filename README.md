@@ -6,7 +6,7 @@ self-distillation. Old TensorFlow code is archived in [legacy/tensorflow](legacy
 
 ## Setup
 
-Use Python 3.12 and a CUDA build of PyTorch suitable for your GPU.
+Use Python 3.12 and a PyTorch build suitable for your hardware.
 
 ```bash
 python -m venv .venv
@@ -14,17 +14,14 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Download the data from
-[Google Drive](https://drive.google.com/file/d/1wmUa7hvJlF5oCLVJ72OgyKnVkHZJX8jX/view),
-[OneDrive](https://1drv.ms/u/s!AsVLooK4NjBruTngZWgx1p0psD1k?e=5iMcVB) or
-[Baidu Netdisk](https://pan.baidu.com/s/16A5SvCVEtPYxelyYIlYAQg) (`trqg`).
-Place each raw file at `datasets/<dataset>/dataset.txt`.
+Download [cascades.zip](https://drive.google.com/file/d/1r-OHiiO9QdYH8sBc6tjmOd-vb_rJCYBo/view?usp=sharing) and extract it into `datasets/`.
+See the [data format](datasets/README.md).
 
 ## Run
 
 ```bash
 python -m ccgl.prepare --dataset weibo \
-    --raw datasets/weibo/dataset.txt --output prepared/weibo.pt
+    --raw datasets/cascades/weibo.parquet --output prepared/weibo.pt
 python -m ccgl.train --data prepared/weibo.pt --output results/main/weibo
 ```
 
@@ -37,6 +34,18 @@ bash run.sh 5
 
 Prepared data and completed fractions are reused. Unfinished work restarts from
 its seed; use a fresh output directory when changing training settings.
+
+## Test
+
+Training evaluates the test split automatically. To evaluate a saved student or teacher:
+
+```bash
+python -m ccgl.test --data prepared/weibo.pt \
+    --checkpoint results/main/weibo/run-0/100/student.pt \
+    --output results/main/weibo/run-0/100/test
+```
+
+Use the checkpoint from the desired label fraction (1, 10 or 100).
 
 ## Outputs
 

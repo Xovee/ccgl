@@ -22,6 +22,14 @@ def seed_everything(seed):
     torch.manual_seed(seed)
 
 
+def configure():
+    os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":4096:8"
+    torch.set_num_threads(4)
+    torch.use_deterministic_algorithms(True)
+    torch.backends.cudnn.benchmark = False
+    torch.backends.cudnn.rnn.fp32_precision = "tf32"
+
+
 def checkpoint(model, path):
     temporary = path.with_suffix(".tmp")
     torch.save(model.state_dict(), temporary)
@@ -110,11 +118,7 @@ def main():
     parser.add_argument("--epochs", type=int, default=1000)
     parser.add_argument("--patience", type=int, default=20)
     args = parser.parse_args()
-    os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":4096:8"
-    torch.set_num_threads(4)
-    torch.use_deterministic_algorithms(True)
-    torch.backends.cudnn.benchmark = False
-    torch.backends.cudnn.rnn.fp32_precision = "tf32"
+    configure()
     data = torch.load(args.data, weights_only=True)
     x = {name: padded(split, args.device) for name, split in data.items() if name != "manifest"}
     y = {name: data[name]["labels"].to(args.device) for name in ("train", "val", "test")}
